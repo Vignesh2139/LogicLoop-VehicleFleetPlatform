@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useData } from '../context/DataContext';
+import Icon from '../components/Icon';
 import { useAuth } from '../context/AuthContext';
 import Modal from '../components/Modal';
 import { motion } from 'framer-motion';
@@ -21,7 +22,7 @@ export default function Fleet() {
     const [newVehicle, setNewVehicle] = useState({
         name: '', type: 'EV', category: 'Light Commercial',
         fuelType: 'Electric', loadCapacity: 500, battery: 100,
-        licensePlate: '', orgId: '', image: '🚐',
+        licensePlate: '', orgId: '', image: 'Truck',
         maxRange: 150, currentRange: 150
     });
 
@@ -47,7 +48,7 @@ export default function Fleet() {
         setNewVehicle({
             name: '', type: 'EV', category: 'Light Commercial',
             fuelType: 'Electric', loadCapacity: 500, battery: 100,
-            licensePlate: '', orgId: '', image: '🚐',
+            licensePlate: '', orgId: '', image: 'Truck',
             maxRange: 150, currentRange: 150
         });
     };
@@ -113,7 +114,7 @@ export default function Fleet() {
                         onClick={() => setSelectedVehicle(v)}
                     >
                         <div className="vehicle-card-top">
-                            <div className="vehicle-card-icon">{v.image}</div>
+                            <div className="vehicle-card-icon"><Icon name={v.image} size={24} /></div>
                             <span
                                 className="badge"
                                 style={{ background: statusConfig[v.status]?.bg, color: statusConfig[v.status]?.color }}
@@ -146,7 +147,7 @@ export default function Fleet() {
 
                         <div className="vehicle-card-bottom">
                             <span className={`vc-type-badge ${v.fuelType === 'Electric' ? 'ev' : 'diesel'}`}>
-                                {v.fuelType === 'Electric' ? '⚡ EV' : '⛽ Diesel'}
+                                {v.fuelType === 'Electric' ? 'EV' : 'Diesel'}
                             </span>
                             <span className="vc-capacity">{v.loadCapacity} kg</span>
                         </div>
@@ -198,7 +199,7 @@ export default function Fleet() {
                 {selectedVehicle && (
                     <div className="vehicle-detail">
                         <div className="vd-header">
-                            <span className="vd-icon">{selectedVehicle.image}</span>
+                            <span className="vd-icon"><Icon name={selectedVehicle.image} size={28} /></span>
                             <div>
                                 <h3>{selectedVehicle.name}</h3>
                                 <p>{selectedVehicle.category} • {selectedVehicle.licensePlate}</p>

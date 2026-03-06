@@ -7,7 +7,7 @@ export const organizations = [
         id: 'org-1',
         name: 'FleetCorp Logistics',
         type: 'Logistics',
-        logo: '🏢',
+        logo: 'Building2',
         color: '#3b82f6',
         description: 'Full-service logistics company specializing in urban and interstate deliveries.',
         vehicleCount: 5,
@@ -18,7 +18,7 @@ export const organizations = [
         id: 'org-2',
         name: 'GreenLogistics',
         type: 'Eco Transport',
-        logo: '🌿',
+        logo: 'Leaf',
         color: '#10b981',
         description: 'Sustainable transport solutions with an all-electric fleet.',
         vehicleCount: 4,
@@ -34,7 +34,7 @@ export const users = [
         email: 'arjun@fleetcommand.io',
         role: 'admin',
         orgId: null,
-        avatar: '👨‍💼',
+        avatar: 'Shield',
         title: 'Platform Administrator'
     },
     {
@@ -43,7 +43,7 @@ export const users = [
         email: 'priya@fleetcorp.com',
         role: 'manager',
         orgId: 'org-1',
-        avatar: '👩‍💻',
+        avatar: 'UserCircle',
         title: 'Fleet Manager – FleetCorp'
     },
     {
@@ -52,7 +52,7 @@ export const users = [
         email: 'ravi@greenlogistics.com',
         role: 'manager',
         orgId: 'org-2',
-        avatar: '👨‍🔧',
+        avatar: 'UserCircle',
         title: 'Operations Manager – GreenLogistics'
     },
     {
@@ -61,7 +61,7 @@ export const users = [
         email: 'sneha@fleetcorp.com',
         role: 'driver',
         orgId: 'org-1',
-        avatar: '👩‍✈️',
+        avatar: 'User',
         title: 'Senior Driver – FleetCorp',
         assignedVehicle: 'v-1'
     }
@@ -86,7 +86,7 @@ export const vehicles = [
         nextService: '2026-05-15',
         mileage: 15420,
         location: { lat: 19.076, lng: 72.8777, address: 'Andheri East, Mumbai' },
-        image: '🚐',
+        image: 'Truck',
         healthScore: 92,
         specs: {
             year: 2025,
@@ -114,7 +114,7 @@ export const vehicles = [
         nextService: '2026-04-20',
         mileage: 48200,
         location: { lat: 19.229, lng: 72.856, address: 'Borivali, Mumbai' },
-        image: '🚛',
+        image: 'Truck',
         healthScore: 78,
         specs: {
             year: 2024,
@@ -141,7 +141,7 @@ export const vehicles = [
         nextService: '2026-05-28',
         mileage: 9800,
         location: { lat: 19.017, lng: 72.856, address: 'Dadar, Mumbai' },
-        image: '🛺',
+        image: 'Truck',
         healthScore: 88,
         specs: {
             year: 2025,
@@ -169,7 +169,7 @@ export const vehicles = [
         nextService: '2026-06-01',
         mileage: 92000,
         location: { lat: 18.52, lng: 73.856, address: 'Pune Depot' },
-        image: '🚚',
+        image: 'Truck',
         healthScore: 45,
         specs: {
             year: 2023,
@@ -196,7 +196,7 @@ export const vehicles = [
         nextService: '2026-05-10',
         mileage: 3200,
         location: { lat: 19.113, lng: 72.869, address: 'Bandra, Mumbai' },
-        image: '🏍️',
+        image: 'Bike',
         healthScore: 96,
         specs: {
             year: 2025,
@@ -224,7 +224,7 @@ export const vehicles = [
         nextService: '2026-05-05',
         mileage: 34500,
         location: { lat: 12.971, lng: 77.594, address: 'Koramangala, Bangalore' },
-        image: '🚛',
+        image: 'Truck',
         healthScore: 81,
         specs: {
             year: 2025,
@@ -251,7 +251,7 @@ export const vehicles = [
         nextService: '2026-04-25',
         mileage: 12400,
         location: { lat: 12.935, lng: 77.624, address: 'HSR Layout, Bangalore' },
-        image: '🛺',
+        image: 'Truck',
         healthScore: 73,
         specs: {
             year: 2024,
@@ -278,7 +278,7 @@ export const vehicles = [
         nextService: '2026-05-20',
         mileage: 1800,
         location: { lat: 12.978, lng: 77.572, address: 'Indiranagar, Bangalore' },
-        image: '🏍️',
+        image: 'Bike',
         healthScore: 98,
         specs: {
             year: 2025,
@@ -305,7 +305,7 @@ export const vehicles = [
         nextService: '2026-04-30',
         mileage: 67000,
         location: { lat: 13.035, lng: 77.597, address: 'Yelahanka, Bangalore' },
-        image: '🚌',
+        image: 'Bus',
         healthScore: 69,
         specs: {
             year: 2024,

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useData } from '../context/DataContext';
+import Icon from '../components/Icon';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getRecommendations, resolveConflicts } from '../engine/scheduler';
 import {
@@ -174,7 +175,7 @@ export default function SchedulingEngine() {
 
                                         <div className="rec-main">
                                             <div className="rec-vehicle">
-                                                <span className="rec-icon">{rec.vehicle.image}</span>
+                                                <span className="rec-icon"><Icon name={rec.vehicle.image} size={24} /></span>
                                                 <div className="rec-vehicle-info">
                                                     <strong>{rec.vehicle.name}</strong>
                                                     <span>{rec.vehicle.category} • {rec.vehicle.licensePlate}</span>

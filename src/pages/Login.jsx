@@ -3,22 +3,29 @@ import { useAuth } from '../context/AuthContext';
 import { users } from '../data/mockData';
 import { Zap, Shield, ChevronRight, Truck } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Icon from '../components/Icon';
 import './Login.css';
 
 export default function Login() {
     const { login } = useAuth();
+    const [step, setStep] = useState(1); // 1: mobile, 2: otp, 3: role
+    const [mobile, setMobile] = useState('');
+    const [otp, setOtp] = useState('');
     const [selectedUser, setSelectedUser] = useState(null);
 
-    const handleLogin = () => {
-        if (selectedUser) {
-            login(selectedUser);
-        }
+    // Filter out Operations Manager (Ravi Kumar - user-3)
+    const availableUsers = users.filter(u => u.id !== 'user-3');
+
+    const handleSendOtp = () => {
+        if (mobile.length === 10) setStep(2);
     };
 
-    const roleIcons = {
-        admin: '👨‍💼',
-        manager: '👩‍💻',
-        driver: '👩‍✈️'
+    const handleVerifyOtp = () => {
+        if (otp.length === 4) setStep(3);
+    };
+
+    const handleLogin = () => {
+        if (selectedUser) login(selectedUser);
     };
 
     const roleDescriptions = {
@@ -42,58 +49,88 @@ export default function Login() {
                 transition={{ duration: 0.6, ease: 'easeOut' }}
             >
                 <div className="login-header">
-                    <div className="login-logo">
-                        <Zap size={28} />
-                    </div>
+                    <div className="login-logo"><Zap size={28} /></div>
                     <h1>FleetCommand</h1>
-                    <p>Fleet Governance & Scheduling Platform</p>
+                    <p>Fleet Governance & Scheduling</p>
                 </div>
 
-                <div className="login-subtitle">
-                    <Shield size={14} />
-                    <span>Select a role to explore the platform</span>
-                </div>
+                {step === 1 && (
+                    <motion.div className="login-form-step" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                        <div className="login-subtitle">
+                            <Shield size={14} /><span>Secure Authentication</span>
+                        </div>
+                        <div className="input-group">
+                            <label>Mobile Number</label>
+                            <input
+                                type="text"
+                                placeholder="Enter 10-digit mobile number"
+                                value={mobile}
+                                onChange={(e) => setMobile(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                            />
+                        </div>
+                        <button className="login-btn" onClick={handleSendOtp} disabled={mobile.length !== 10}>
+                            Send OTP
+                        </button>
+                    </motion.div>
+                )}
 
-                <div className="login-users">
-                    {users.map((user, index) => (
-                        <motion.div
-                            key={user.id}
-                            className={`login-user-card ${selectedUser === user.id ? 'selected' : ''}`}
-                            onClick={() => setSelectedUser(user.id)}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.1 * index, duration: 0.4 }}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                        >
-                            <div className="login-user-avatar">{user.avatar}</div>
-                            <div className="login-user-details">
-                                <h3>{user.name}</h3>
-                                <p className="login-user-title">{user.title}</p>
-                                <p className="login-user-desc">{roleDescriptions[user.role]}</p>
-                            </div>
-                            <div className={`login-role-badge role-${user.role}`}>
-                                {user.role}
-                            </div>
-                            <ChevronRight size={18} className="login-arrow" />
-                        </motion.div>
-                    ))}
-                </div>
+                {step === 2 && (
+                    <motion.div className="login-form-step" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                        <div className="login-subtitle">
+                            <Shield size={14} /><span>Verify Mobile: +91 {mobile}</span>
+                        </div>
+                        <div className="input-group">
+                            <label>One Time Password (OTP)</label>
+                            <input
+                                type="text"
+                                placeholder="Enter 4-digit OTP"
+                                value={otp}
+                                onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 4))}
+                            />
+                        </div>
+                        <button className="login-btn" onClick={handleVerifyOtp} disabled={otp.length !== 4}>
+                            Verify & Proceed
+                        </button>
+                    </motion.div>
+                )}
 
-                <motion.button
-                    className="login-btn"
-                    onClick={handleLogin}
-                    disabled={!selectedUser}
-                    whileHover={selectedUser ? { scale: 1.02 } : {}}
-                    whileTap={selectedUser ? { scale: 0.98 } : {}}
-                >
-                    <Truck size={18} />
-                    <span>Enter FleetCommand</span>
-                </motion.button>
+                {step === 3 && (
+                    <motion.div className="login-form-step" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                        <div className="login-subtitle">
+                            <Shield size={14} /><span>Select your simulation role</span>
+                        </div>
+                        <div className="login-users">
+                            {availableUsers.map((user, index) => (
+                                <motion.div
+                                    key={user.id}
+                                    className={`login-user-card ${selectedUser === user.id ? 'selected' : ''}`}
+                                    onClick={() => setSelectedUser(user.id)}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.1 * index, duration: 0.4 }}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    <div className="login-user-avatar"><Icon name={user.avatar} size={24} /></div>
+                                    <div className="login-user-details">
+                                        <h3>{user.name}</h3>
+                                        <p className="login-user-title">{user.title}</p>
+                                        <p className="login-user-desc">{roleDescriptions[user.role]}</p>
+                                    </div>
+                                    <div className={`login-role-badge role-${user.role}`}>
+                                        {user.role}
+                                    </div>
+                                    <ChevronRight size={18} className="login-arrow" />
+                                </motion.div>
+                            ))}
+                        </div>
 
-                <p className="login-footer-text">
-                    Multi-tenant fleet management with role-based visibility control
-                </p>
+                        <button className="login-btn" onClick={handleLogin} disabled={!selectedUser}>
+                            <Truck size={18} />
+                            <span>Enter FleetCommand</span>
+                        </button>
+                    </motion.div>
+                )}
             </motion.div>
         </div>
     );

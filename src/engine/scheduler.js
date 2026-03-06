@@ -113,7 +113,7 @@ export function scoreVehicle(vehicle, task) {
     if (energyLevel >= 70) {
         reasons.push(`✅ ${fuelLabel} level strong: ${energyLevel}%`);
     } else if (energyLevel >= 40) {
-        reasons.push(`⚡ ${fuelLabel} level adequate: ${energyLevel}%`);
+        reasons.push(`${fuelLabel} level adequate: ${energyLevel}%`);
     } else {
         reasons.push(`⚠️ Low ${fuelLabel.toLowerCase()} level: ${energyLevel}% — may need charging/refueling`);
     }

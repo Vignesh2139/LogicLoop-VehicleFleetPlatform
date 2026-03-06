@@ -141,7 +141,7 @@ export default function Tasks() {
                             <div className="task-card-requirements">
                                 <span className="req-chip">Min {task.requirements?.minCapacity} kg</span>
                                 <span className="req-chip">{task.requirements?.zone}</span>
-                                {task.requirements?.preferEV && <span className="req-chip ev-chip">⚡ EV Preferred</span>}
+                                {task.requirements?.preferEV && <span className="req-chip ev-chip">EV Preferred</span>}
                                 <span className="req-chip">≤ {task.requirements?.maxDistance} km</span>
                             </div>
 

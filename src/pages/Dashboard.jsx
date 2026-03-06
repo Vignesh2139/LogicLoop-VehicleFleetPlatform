@@ -1,5 +1,6 @@
 import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
+import Icon from '../components/Icon';
 import { motion } from 'framer-motion';
 import {
     Truck, Battery, Fuel, AlertTriangle, CheckCircle2,
@@ -34,7 +35,7 @@ export default function Dashboard() {
             <div className="page-header">
                 <div>
                     <h1>Dashboard</h1>
-                    <p>Welcome back, {currentUser?.name?.split(' ')[0]} 👋</p>
+                    <p>Welcome back, {currentUser?.name?.split(' ')[0]}</p>
                 </div>
             </div>
 
@@ -147,7 +148,7 @@ export default function Dashboard() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.4 + i * 0.05 }}
                             >
-                                <div className="vehicle-row-icon">{v.image}</div>
+                                <div className="vehicle-row-icon"><Icon name={v.image} size={18} /></div>
                                 <div className="vehicle-row-info">
                                     <strong>{v.name}</strong>
                                     <span>{v.category} • {v.licensePlate}</span>
@@ -253,7 +254,7 @@ export default function Dashboard() {
                                     transition={{ delay: 0.6 + i * 0.1 }}
                                 >
                                     <div className="org-row-logo" style={{ background: `${org.color}15`, color: org.color }}>
-                                        {org.logo}
+                                        <Icon name={org.logo} size={24} />
                                     </div>
                                     <div className="org-row-info">
                                         <strong>{org.name}</strong>

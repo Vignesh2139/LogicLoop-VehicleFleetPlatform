@@ -1,5 +1,6 @@
 import { useData } from '../context/DataContext';
 import { motion } from 'framer-motion';
+import Icon from '../components/Icon';
 import { Building2, Truck, Users, Shield, MapPin, Activity } from 'lucide-react';
 import './Organizations.css';
 
@@ -31,7 +32,7 @@ export default function Organizations() {
                             transition={{ delay: i * 0.1 }}
                         >
                             <div className="org-card-header" style={{ '--org-color': org.color }}>
-                                <div className="org-card-logo">{org.logo}</div>
+                                <div className="org-card-logo"><Icon name={org.logo} size={28} /></div>
                                 <div>
                                     <h2>{org.name}</h2>
                                     <span className="org-type-badge">{org.type}</span>
@@ -76,7 +77,7 @@ export default function Organizations() {
                                 <div className="org-vehicle-list">
                                     {orgVehicles.map(v => (
                                         <div key={v.id} className="org-vehicle-chip">
-                                            <span>{v.image}</span>
+                                            <span><Icon name={v.image} size={14} /></span>
                                             <span>{v.name}</span>
                                             <span className={`org-v-status ${v.status}`}>
                                                 {v.status === 'available' ? '●' : v.status === 'in-transit' ? '◉' : '○'}

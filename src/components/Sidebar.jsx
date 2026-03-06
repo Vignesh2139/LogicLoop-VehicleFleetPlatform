@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Icon from './Icon';
 import {
     LayoutDashboard,
     Truck,
@@ -70,7 +71,7 @@ export default function Sidebar() {
                     </div>
                 )}
                 <div className="sidebar-user">
-                    <div className="sidebar-avatar">{currentUser?.avatar}</div>
+                    <div className="sidebar-avatar"><Icon name={currentUser?.avatar} size={24} /></div>
                     <div className="sidebar-user-info">
                         <p className="sidebar-username">{currentUser?.name}</p>
                         <p className="sidebar-role">{currentUser?.title}</p>

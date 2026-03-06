@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { DataProvider } from './context/DataContext';
@@ -13,6 +14,7 @@ import Reports from './pages/Reports';
 
 function ProtectedLayout() {
   const { isAuthenticated } = useAuth();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
@@ -20,10 +22,10 @@ function ProtectedLayout() {
 
   return (
     <DataProvider>
-      <div className="app-layout">
-        <Sidebar />
+      <div className={`app-layout ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+        <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         <div className="main-content">
-          <Header />
+          <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
           <div className="page-content">
             <Routes>
               <Route path="/" element={<Dashboard />} />
